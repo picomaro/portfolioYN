@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Yuki Nakao</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <a href=""#top>Yuki Nakao</a>
+            <nav>
+                <a href="#About">About</a>
+                <a href="#Works">Works</a>
+            </nav>
+        </header>
+        <main>
+            <section id="top">
+            <img src="./media/ice.png" width="50%">
+            <h1>
+                Yuki Nakao<br>
+                Portfolio
+            </h1>
+            </section>
+            <section id="About">
+            <h3>About</h3>
+            <p>
+                中尾優希</br>
+                東京都市大学　デザイン・データ科学部
+            </p>
+            <p>
+                専門:インタラクションデザイン,グラフィックデザイン</br>
+                スキル:Arduino,Clip Studio,procreate,figma
+            </p>
+            </section>
+            <section id="Works" class="Works">
+            <h3>Works</h3>
+            <div class="works-controls">
+                <select id = "category">
+                    <option value="all">すべてのカテゴリー</option>
+                </select>
+                <select id = "sort">
+                    <option value="new">新しい順</option>
+                    <option value="old">古い順</option>
+                    <option value="title">タイトル順</option>
+                </select>
+            </div>
+
+            <div id="works-grid"></div>
+
+            </section>
+        </main>
+        <footer>
+            <span>© 2026 Yuki Nakao</span>
+        </footer>
+        <script src="works.js"></script>
+    </body>
+</html>
