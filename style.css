@@ -1,27 +1,18 @@
-/* body{
-    background: #8A9CA4;
-    color: #111111;
-    background-image:url(/media/me.png);
-    background-repeat:repeat-x;
-    background-size: auto 100%;
-} */
 body {
     background-color: #eedcb3;
     color: #111111;
     background-image:
         linear-gradient(rgba(240, 240, 240), rgba(240, 240, 240,0.8)),
-        url('./media/sleepy.png'); /* 相対パスに変更 */
+        url('./media/sleepy.png');
     background-repeat: no-repeat, repeat;
-    background-size: 100% 100%,100px auto; /* 高さにあわせて調整し、横リピート */
-    min-height: 100vh; /* 画面全体の高さを確保 */
+    background-size: 100% 100%,100px auto;
+    min-height: 100vh;
     margin: 0;
 }
 
-
-
-a{
+a {
     color: inherit;
-    text-decoration:none;
+    text-decoration: none;
 }
 
 html {
@@ -29,99 +20,275 @@ html {
     scroll-padding-top: 50px;
 }
 
-header a{
+header a {
     font-size: 2rem;
 }
-
-
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width:100%;
-    position:fixed;
+    width: 100%;
+    position: fixed;
     padding: 0px 30px;
     background: #f0f0f0;
     height: 75px;
-    top:0;
-    border-width:2px;
-    border-style:solid;
-    border-color: #576971;
+    top: 0;
+    z-index: 1000;
 }
 
+* {
+    box-sizing: border-box;
+}
+
+section {
+    padding: 10px 30px;
+}
+
+/* ハンバーガーボタン */
+.menu {
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    cursor: pointer;
+    z-index: 1002;
+}
+
+.menu span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #111111;
+    position: absolute;
+    left: 0;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.menu span:nth-child(1) { top: 0px; }
+.menu span:nth-child(2) { top: 10px; }
+.menu span:nth-child(3) { top: 20px; }
+
+.menu:hover span {
+    background-color: #888888;
+}
+
+/* 「×」印アニメーション */
+.menu.active span:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+}
+.menu.active span:nth-child(2) {
+    opacity: 0;
+}
+.menu.active span:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+}
+
+/* 左からスライドして出るメニュー */
 nav {
-    display:flex;
-    gap: 28px;
+    position: fixed;
+    top: 0;
+    right: -320px;               /* 初期状態：画面の左外に隠す */
+    left: auto;
+    width: 300px;
+    max-width: 80vw;
+    height: 100vh;
+    background-color: #ffffff;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    transition: right 0.4s ease; /* 左からのアニメーション */
+    z-index: 1001;
 }
 
-nav a:hover{
-    color:#0f9f9f;
+/* ボタンを押した時（.active時）に左から出る */
+nav.active {
+    right: 0;
 }
 
-/* nav a{
-    background-color: antiquewhite;
-    padding: 8px 8px;
-    border-radius: 8px;
-} */
-
-*{box-sizing:border-box;}
-
-section{
-    padding:10px 30px;
+nav a {
+    font-size: 1.3rem;
+    color: #111111;
+    text-decoration: none;
 }
 
-footer{
+nav a:hover {
+    color: #888888;
+}
+
+footer {
     padding: 20px 30px;
     font-size: 11px;
 }
 
-#top{
-   
+#top {
     margin: 70px 0px 0px 0px;
 }
 
-#works-grid{
-    display:grid;
-    grid-template-columns: repeat(3,1fr);
-    gap:30px;
+#works-grid {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
 }
 
 .work-card img {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    height: 150px;
     object-fit: cover;
-    display:block;
+    object-position: top;
+    display: block;
 }
 
 .work-card {
     border: 1px solid #000000;
+    background-color: #f0f0f0;
+
+    width: 240px;
+    max-width: 240px;
+    flex: 0 0 240px;
+
+    scroll-snap-align: start;
+
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
+
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.work-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 .work-card h4 {
-    margin:15px 15px 5px;
+    margin: 15px 15px 5px;
 }
 
-.work-card p{
-    margin:0 15px 15px;
+.work-card p {
+    margin: 0 15px 15px;
     font-size: 14px;
     line-height: 1.6;
 }
 
-@media screen and (max-width:600px){
-    #top{
-        padding-top: 80px;
-    }
+.works-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
 
-    #top img{
-        width:100%;
-    }
+.works-controls select {
+    padding: 10px;
+    font-size: 16px;
+}
 
-    #works-grid{
-        grid-template-columns: 1fr;
-    }
+.work-category {
+    font-size: 14px;
+    padding-top: 14px;
+    color: #9c9c9c;
+}
 
-    .works-controls{
-        flex-direction: column;
-    }
+.work-year {
+    font-size: 10px;
+    margin-top: 10px;
+}
+/* 作品詳細表示エリア */
+.work-detail {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #000000;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.detail-img-wrapper {
+    width: 100%;
+    max-height: 500px;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 画像全体を切らずにフィット表示 */
+.detail-img-wrapper img {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    display: block;
+}
+
+/* カードをクリック可能にするスタイル */
+.work-card {
+    cursor: pointer;
+}
+
+/* 選択中のカードを強調 */
+.work-card.selected {
+    background-color: #d0d0d0;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;        /* スライダーの最大横幅 */
+    margin: 0 auto 20px auto;
+    overflow: hidden;        /* はみ出た部分を隠す */
+}
+
+/* 画像を横一列に並べるトラック */
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* 横移動のアニメーション */
+    width: 100%;
+}
+
+/* スライド画像 */
+.slide-img {
+    width: 100%;
+    flex: 0 0 100%;
+    height: 400px;  
+    object-position: top;
+    object-fit: cover;       
+    display: block;
+}
+
+/* ドット（点）を置く領域 */
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+/* ドット本体 */
+.slider-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #bbb;  /* 通常時のドットの色 */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.slider-dots .dot:hover {
+    transform: scale(1.2);
+}
+
+/* 選択中のドット */
+.slider-dots .dot.active {
+    background-color: #111111; /* 選択中の色（黒） */
 }

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -8,46 +10,78 @@
     </head>
     <body>
         <header>
-            <a href=""#top>Yuki Nakao</a>
-            <nav>
-                <a href="#About">About</a>
-                <a href="#Works">Works</a>
+            <a href="#top">Yuki Nakao</a>
+            <button class="menu" id="menu" >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav id="nav-menu">
+                <a href="#top">Home</a>
+                <a href="#about">About</a>
+                <a href="#works">Works</a>
             </nav>
+
+
         </header>
         <main>
             <section id="top">
-            <img src="./media/ice.png" width="50%">
-            <h1>
-                Yuki Nakao<br>
-                Portfolio
-            </h1>
-            </section>
-            <section id="About">
-            <h3>About</h3>
-            <p>
-                中尾優希</br>
-                東京都市大学　デザイン・データ科学部
-            </p>
-            <p>
-                専門:インタラクションデザイン,グラフィックデザイン</br>
-                スキル:Arduino,Clip Studio,procreate,figma
-            </p>
-            </section>
-            <section id="Works" class="Works">
-            <h3>Works</h3>
-            <div class="works-controls">
-                <select id = "category">
-                    <option value="all">すべてのカテゴリー</option>
-                </select>
-                <select id = "sort">
-                    <option value="new">新しい順</option>
-                    <option value="old">古い順</option>
-                    <option value="title">タイトル順</option>
-                </select>
-            </div>
 
-            <div id="works-grid"></div>
+                <div class="slider-container">
+                    <div class="slider-track" id="slider-track">
+            <!-- スライドさせたい画像を並べます（枚数は自由に追加・変更可能です） -->
+                        <img src="./media/gomibako.jpg" alt="Slide 1" class="slide-img">
+                        <img src="./media/cake.png" alt="Slide 2" class="slide-img">
+                        <img src="./media/ice.png" alt="Slide 3" class="slide-img">
+                    </div>
+        <!-- 下部の点（ドット）を表示する場所 -->
+                    <div class="slider-dots" id="slider-dots"></div>
+                </div>
 
+                <h1>
+                    Portfolio
+                </h1>
+            </section>
+            <section id="about">
+                <h3>About</h3>
+                <p>
+                    中尾優希<br>
+                    東京都市大学 デザイン・データ科学部
+                </p>
+                <p>
+                    専門:インタラクションデザイン,グラフィックデザイン<br>
+                    スキル:Arduino,Clip Studio,procreate,figma<br>
+                    趣味：イラスト,散歩<br>
+                    所属:デジタルコンテンツ研究会,創作サークルarte
+                </p>
+            </section>
+            <section id="works">
+                <h3>Works</h3>
+                <div class="works-controls">
+                    <select id="category">
+                        <option value="all">すべてのカテゴリー</option>
+                    </select>
+                    <select id="sort">
+                        <option value="new">新しい順</option>
+                        <option value="old">古い順</option>
+                        <option value="title">タイトル順</option>
+                    </select>
+                </div>
+
+                <div id="works-grid"></div>
+
+                <div id="work-detail" class="work-detail">
+                    <div class="detail-img-wrapper">
+                        <img id="detail-image" src="" alt="">
+                    </div>
+                    <div class="detail-info">
+                        <p id="detail-category" class="work-category"></p>
+                        <h4 id="detail-title"></h4>
+                        <p id="detail-description"></p>
+                        <p id="detail-year" class="work-year"></p>
+                    </div>
+                </div>
             </section>
         </main>
         <footer>
